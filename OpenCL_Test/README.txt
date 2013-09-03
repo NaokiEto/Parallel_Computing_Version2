@@ -1,0 +1,5 @@
+There are two different types of hello world programs, the hellocl.c one, and the hello.c with the hello.cl
+
+g++ -lOpenCL -L $HOME/Documents/Parallel_Computing/AMD_Test/openCl_amd_test3/AMD-APP-SDK-v2.8.1.0-RC-lnx64/lib/x86_64/ -I $HOME/Documents/Parallel_Computing/AMD_Test/openCl_amd_test3/AMD-APP-SDK-v2.8.1.0-RC-lnx64/include/ -o $HOME/Documents/Parallel_Computing/OpenCL_Test/wut $HOME/Documents/Parallel_Computing/OpenCL_Test/hellocl.c
+
+Note: i have to use vtkPistonMapper specifically vtkPistonMapper::RenderOnCPU. Still haven't figured out wut

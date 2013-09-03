@@ -1,0 +1,1 @@
+sudo ./PolyDataToImageData 8 AllStars.vtk

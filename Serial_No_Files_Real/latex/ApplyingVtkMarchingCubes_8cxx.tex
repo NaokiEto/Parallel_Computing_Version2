@@ -1,0 +1,99 @@
+\hypertarget{ApplyingVtkMarchingCubes_8cxx}{\section{\-Applying\-Vtk\-Marching\-Cubes.\-cxx \-File \-Reference}
+\label{ApplyingVtkMarchingCubes_8cxx}\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+}
+
+
+\-This program gets the \-V\-T\-K file and converts it to a metaimage data so that vtk\-Marching\-Cubes class can be applied. \-It applies marching cubes to the data and outputs the resulting vtk file.  
+
+
+{\ttfamily \#include $<$dirent.\-h$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+{\ttfamily \#include $<$vtk\-Version.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Smart\-Pointer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Reader.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Image\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-To\-Image\-Stencil.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Image\-Stencil.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Point\-Data.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Mapper.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Extract\-V\-O\-I.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Marching\-Cubes.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Windowed\-Sinc\-Poly\-Data\-Filter.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Data\-Array.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Lookup\-Table.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Normals.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Writer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Append\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Clean\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Actor.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Renderer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Render\-Window.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Render\-Window\-Interactor.\-h$>$}\*
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$vt\-\_\-user.\-h$>$}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}{search} (std\-::string curr\-\_\-directory, std\-::string extension)
+\item 
+int \hyperlink{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ApplyingVtkMarchingCubes_8cxx_a6c0d9afe65725502d251dc2102870861}{std\-::vector$<$ std\-::string $>$ {\bfseries results}}\label{ApplyingVtkMarchingCubes_8cxx_a6c0d9afe65725502d251dc2102870861}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-This program gets the \-V\-T\-K file and converts it to a metaimage data so that vtk\-Marching\-Cubes class can be applied. \-It applies marching cubes to the data and outputs the resulting vtk file. \-Do whatever you want with public license \-Version 1, \-August 13, 2013
+
+\-Copyright (\-C) 2013 \-Naoki \-Eto $<$\href{mailto:neto@lbl.gov}{\tt neto@lbl.\-gov}$>$
+
+\-Everyone is permitted to copy and distribute verbatim or modified copies of this license document, and changing it is allowed as long as the name is changed.
+
+\-Do whatever you want with the public license
+
+\-T\-E\-R\-M\-S \-A\-N\-D \-C\-O\-N\-D\-I\-T\-I\-O\-N\-S \-F\-O\-R \-C\-O\-P\-Y\-I\-N\-G, \-D\-I\-S\-T\-R\-I\-B\-U\-T\-I\-O\-N \-A\-N\-D \-M\-O\-D\-I\-F\-I\-C\-A\-T\-I\-O\-N
+
+0. \-You just do what you want to do.
+
+\begin{DoxyAuthor}{\-Author}
+\-Naoki \-Eto 
+\end{DoxyAuthor}
+\begin{DoxyDate}{\-Date}
+\-August 13, 2013 
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em argv\mbox{[}1\mbox{]}} & -\/ the output's filename \\
+\hline
+\mbox{\tt out}  & {\em p\-Writer} & -\/ vtk\-Poly\-Data file with the output's filename \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+-\/ \-E\-X\-I\-T\-\_\-\-S\-U\-C\-C\-E\-S\-S at the end 
+\end{DoxyReturn}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!main@{main}}
+\index{main@{main}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}
+\-This program converts a vtk\-Poly\-Data image into volume representation (vtk\-Image\-Data) where the foreground voxels are 1 and the background voxels are 0. \-Internally vtk\-Poly\-Data\-To\-Image\-Stencil is utilized. \-The resultant image is saved to disk in a metaimage file format. vtk\-Marching\-Cubes is applied to this file format, and a vtk file is outputted. \hypertarget{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!search@{search}}
+\index{search@{search}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{search}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf search} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{curr\-\_\-directory, }
+\item[{std\-::string}]{extension}
+\end{DoxyParamCaption}
+)}}\label{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}
+\-This recursive search algorithm function will be used later to find the vtk file in the directory. \-The user is to place the vtk file in the build directory, and this function will find it and output it. 

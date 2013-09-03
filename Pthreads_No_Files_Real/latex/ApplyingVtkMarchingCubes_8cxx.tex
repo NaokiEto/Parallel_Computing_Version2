@@ -1,0 +1,127 @@
+\hypertarget{ApplyingVtkMarchingCubes_8cxx}{\section{\-Applying\-Vtk\-Marching\-Cubes.\-cxx \-File \-Reference}
+\label{ApplyingVtkMarchingCubes_8cxx}\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+}
+
+
+\-This program gets the \-V\-T\-K file, divides up it up, and performs pthreads (or \-P\-O\-S\-I\-X \-Threading). \-It converts each piece to metaimage data so that vtk\-Marching\-Cubes class can be applied, applies marching cubes to each thread, outputs the resulting vtk data, and then conglomerates the data into 1 vtk file.  
+
+
+{\ttfamily \#include $<$dirent.\-h$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+{\ttfamily \#include $<$vtk\-Version.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Smart\-Pointer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Reader.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Image\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Meta\-Image\-Writer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-To\-Image\-Stencil.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Image\-Stencil.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Point\-Data.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Mapper.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Extract\-V\-O\-I.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Marching\-Cubes.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Windowed\-Sinc\-Poly\-Data\-Filter.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Data\-Array.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Lookup\-Table.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Normals.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Poly\-Data\-Writer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Append\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Clean\-Poly\-Data.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Actor.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Renderer.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Render\-Window.\-h$>$}\*
+{\ttfamily \#include $<$vtk\-Render\-Window\-Interactor.\-h$>$}\*
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$pthread.\-h$>$}\*
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structParam__Function}{\-Param\-\_\-\-Function}
+\end{DoxyCompactItemize}
+\subsection*{\-Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structParam__Function}{\-Param\-\_\-\-Function} \hyperlink{ApplyingVtkMarchingCubes_8cxx_ac6dc44d48cb54770fc01e6160a10766f}{params}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}{search} (std\-::string curr\-\_\-directory, std\-::string extension)
+\item 
+void $\ast$ \hyperlink{ApplyingVtkMarchingCubes_8cxx_af721ef0a562fbb9e65194cf7f576582d}{thread\-\_\-function} (void $\ast$ptr)
+\item 
+int \hyperlink{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ApplyingVtkMarchingCubes_8cxx_a6c0d9afe65725502d251dc2102870861}{std\-::vector$<$ std\-::string $>$ {\bfseries results}}\label{ApplyingVtkMarchingCubes_8cxx_a6c0d9afe65725502d251dc2102870861}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-This program gets the \-V\-T\-K file, divides up it up, and performs pthreads (or \-P\-O\-S\-I\-X \-Threading). \-It converts each piece to metaimage data so that vtk\-Marching\-Cubes class can be applied, applies marching cubes to each thread, outputs the resulting vtk data, and then conglomerates the data into 1 vtk file. \-Do whatever you want with public license \-Version 1, \-August 13, 2013
+
+\-Copyright (\-C) 2013 \-Naoki \-Eto $<$\href{mailto:neto@lbl.gov}{\tt neto@lbl.\-gov}$>$
+
+\-Everyone is permitted to copy and distribute verbatim or modified copies of this license document, and changing it is allowed as long as the name is changed.
+
+\-Do whatever you want with the public license
+
+\-T\-E\-R\-M\-S \-A\-N\-D \-C\-O\-N\-D\-I\-T\-I\-O\-N\-S \-F\-O\-R \-C\-O\-P\-Y\-I\-N\-G, \-D\-I\-S\-T\-R\-I\-B\-U\-T\-I\-O\-N \-A\-N\-D \-M\-O\-D\-I\-F\-I\-C\-A\-T\-I\-O\-N
+
+0. \-You just do what you want to do.
+
+\begin{DoxyAuthor}{\-Author}
+\-Naoki \-Eto 
+\end{DoxyAuthor}
+\begin{DoxyDate}{\-Date}
+\-August 13, 2013 
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em argv\mbox{[}1\mbox{]}} & -\/ number of threads for pthreading (look at \-R\-E\-A\-D\-M\-E for more information) \\
+\hline
+\mbox{\tt in}  & {\em argv\mbox{[}2\mbox{]}} & -\/ the output's filename \\
+\hline
+\mbox{\tt out}  & {\em p\-Writer} & -\/ vtk\-Poly\-Data file with the output's filename \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+-\/ \-E\-X\-I\-T\-\_\-\-S\-U\-C\-C\-E\-S\-S at the end 
+\end{DoxyReturn}
+
+
+\subsection{\-Typedef \-Documentation}
+\hypertarget{ApplyingVtkMarchingCubes_8cxx_ac6dc44d48cb54770fc01e6160a10766f}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!params@{params}}
+\index{params@{params}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-Param\-\_\-\-Function}  {\bf params}}}\label{ApplyingVtkMarchingCubes_8cxx_ac6dc44d48cb54770fc01e6160a10766f}
+\-This struct contains the id of the thread, the filename of the vtk file that was found, the number of total threads, and vtk data that has been outputted by marching cubes. \-This will be useful for determining the bounds in the vtk data for each particular thread, as well as in the conglomeration of all the pieces of vtk data later on. 
+
+\subsection{\-Function \-Documentation}
+\hypertarget{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!main@{main}}
+\index{main@{main}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{ApplyingVtkMarchingCubes_8cxx_a0ddf1224851353fc92bfbff6f499fa97}
+\-The main function calls the thread function. \-The vtkpolydata outputted from these functions are collected and appended together to form one output vtkpolydata file. \hypertarget{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!search@{search}}
+\index{search@{search}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{search}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf search} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{curr\-\_\-directory, }
+\item[{std\-::string}]{extension}
+\end{DoxyParamCaption}
+)}}\label{ApplyingVtkMarchingCubes_8cxx_abf4d3375ca506ee4e183fad5ff828be2}
+\-This recursive search algorithm function will be used later to find the vtk file in the directory. \-The user is to place the vtk file in the build directory, and this function will find it and output it. \hypertarget{ApplyingVtkMarchingCubes_8cxx_af721ef0a562fbb9e65194cf7f576582d}{\index{\-Applying\-Vtk\-Marching\-Cubes.\-cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}!thread\-\_\-function@{thread\-\_\-function}}
+\index{thread\-\_\-function@{thread\-\_\-function}!ApplyingVtkMarchingCubes.cxx@{\-Applying\-Vtk\-Marching\-Cubes.\-cxx}}
+\subsubsection[{thread\-\_\-function}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf thread\-\_\-function} (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{ApplyingVtkMarchingCubes_8cxx_af721ef0a562fbb9e65194cf7f576582d}
+\-This program converts a vtk\-Poly\-Data image into volume representation (vtk\-Image\-Data) where the foreground voxels are 1 and the background voxels are 0. \-Internally vtk\-Poly\-Data\-To\-Image\-Stencil is utilized as well as pthreads. \-The resultant image is saved as metaimage data. vtk\-Marching\-Cubes is applied to these pieces of data, the resulting vtk data is saved as a member of the struct. 
